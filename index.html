@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>PDF Creator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <h1>Gerador de PDF</h1>
+    <label>Título:</label><br>
+    <input type="text" id="titulo" placeholder="Digite o título"><br><br>
+
+    <label>Conteúdo:</label><br>
+    <textarea id="conteudo" rows="10" cols="50" placeholder="Digite o conteúdo. Separe parágrafos com linhas vazias."></textarea><br><br>
+
+    <button onclick="gerarPDF()">Gerar PDF</button>
+
+    <script>
+        function sanitizaNome(nome) {
+            nome = nome.trim();
+            nome = nome.replace(/[^0-9a-zA-ZÀ-ÿ _-]/g, "_");
+            if(!nome) nome = "documento";
+            return nome + ".pdf";
+        }
+
+        function gerarPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            const titulo = document.getElementById("titulo").value || "Documento";
+            const conteudo = document.getElementById("conteudo").value;
+
+            let y = 20;
+            doc.setFontSize(22);
+            doc.text(titulo, 10, y);
+            y += 10;
+
+            doc.setFontSize(12);
+            const paragrafos = conteudo.split("\n\n"); // quebra por parágrafo
+            paragrafos.forEach(p => {
+                const linhas = doc.splitTextToSize(p, 180);
+                doc.text(linhas, 10, y);
+                y += linhas.length * 7 + 5;
+            });
+
+            const nomeArquivo = sanitizaNome(titulo);
+            doc.save(nomeArquivo);
+        }
+    </script>
+</body>
+</html>
