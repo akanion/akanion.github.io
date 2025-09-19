@@ -1,25 +1,111 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt">
 <head>
     <meta charset="utf-8">
-    <title>PDF Creator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de PDF</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        label {
+            font-size: 16px;
+            color: #34495e;
+            margin-top: 10px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 18px;
+            }
+
+            input[type="text"],
+            textarea {
+                font-size: 12px;
+            }
+
+            button {
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Gerador de PDF</h1>
-    <label>Título:</label><br>
-    <input type="text" id="titulo" placeholder="Digite o título"><br><br>
+    <div class="container">
+        <h1>Gerador de PDF</h1>
+        <label for="titulo">Título:</label><br>
+        <input type="text" id="titulo" placeholder="Digite o título"><br>
 
-    <label>Conteúdo:</label><br>
-    <textarea id="conteudo" rows="10" cols="50" placeholder="Digite o conteúdo. Separe parágrafos com linhas vazias."></textarea><br><br>
+        <label for="conteudo">Conteúdo:</label><br>
+        <textarea id="conteudo" rows="10" placeholder="Digite o conteúdo. Separe parágrafos com linhas vazias."></textarea><br>
 
-    <button onclick="gerarPDF()">Gerar PDF</button>
+        <button onclick="gerarPDF()">Gerar PDF</button>
+    </div>
 
     <script>
         function sanitizaNome(nome) {
             nome = nome.trim();
             nome = nome.replace(/[^0-9a-zA-ZÀ-ÿ _-]/g, "_");
-            if(!nome) nome = "documento";
+            if (!nome) nome = "documento";
             return nome + ".pdf";
         }
 
