@@ -2,14 +2,15 @@
 <html lang="pt">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1">
     <title>Gerador de PDF</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
-        /* Definições para o modo claro */
+        /* Definições para o modo escuro aplicado globalmente */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f7f6;
+            background-color: #2c3e50; /* Cor de fundo escura */
+            color: #ecf0f1; /* Cor do texto clara */
             margin: 0;
             padding: 0;
             display: flex;
@@ -20,7 +21,7 @@
         }
 
         .container {
-            background-color: #fff;
+            background-color: #34495e; /* Cor de fundo escura para o container */
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
@@ -31,12 +32,12 @@
 
         h1 {
             text-align: center;
-            color: #2c3e50;
+            color: #ecf0f1;
         }
 
         label {
             font-size: 16px;
-            color: #34495e;
+            color: #bdc3c7;
             margin-top: 10px;
         }
 
@@ -45,9 +46,11 @@
             width: 100%;
             padding: 10px;
             margin: 10px 0;
-            border: 1px solid #bdc3c7;
+            border: 1px solid #7f8c8d;
             border-radius: 4px;
             font-size: 14px;
+            background-color: #34495e; /* Cor de fundo escura para os campos de input */
+            color: #ecf0f1; /* Cor clara para o texto */
             box-sizing: border-box;
         }
 
@@ -56,7 +59,7 @@
         }
 
         button {
-            background-color: #3498db;
+            background-color: #2980b9; /* Cor de fundo do botão */
             color: white;
             border: none;
             padding: 12px 20px;
@@ -69,37 +72,7 @@
         }
 
         button:hover {
-            background-color: #2980b9;
-        }
-
-        /* Definições para o modo escuro */
-        body.dark-mode {
-            background-color: #2c3e50;
-            color: #ecf0f1;
-        }
-
-        .container.dark-mode {
-            background-color: #34495e;
-            color: #ecf0f1;
-        }
-
-        label.dark-mode {
-            color: #bdc3c7;
-        }
-
-        input[type="text"].dark-mode,
-        textarea.dark-mode {
-            background-color: #34495e;
-            color: #ecf0f1;
-            border: 1px solid #7f8c8d;
-        }
-
-        button.dark-mode {
-            background-color: #2980b9;
-        }
-
-        button.dark-mode:hover {
-            background-color: #1abc9c;
+            background-color: #1abc9c; /* Cor mais clara quando o botão é clicado */
         }
 
         /* Media Query para telas menores */
@@ -123,7 +96,7 @@
         }
     </style>
 </head>
-<body class="dark-mode"> <!-- Modo escuro aplicado por padrão -->
+<body>
     <div class="container">
         <h1>Gerador de PDF</h1>
         <label for="titulo">Título:</label><br>
